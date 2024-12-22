@@ -9,7 +9,19 @@
 #   end
 
 
-# create 5 merchants
+
 5.times do |n|
   Merchant.find_or_create_by!(name: "Merchant #{n}")
 end
+
+5.times do |n|
+  Brand.find_or_create_by!(name: "Brand #{n}")
+end
+
+5.times do |n|
+  Category.find_or_create_by!(name: "Category #{n}")
+end
+
+# 5.times do |n|
+#   Item.find_or_create_by!(name: "Item #{n}", weight: 10, price: 10, stock_quantity: 10, merchant_id: 1)
+# end
