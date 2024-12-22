@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+# create 5 merchants
+5.times do |n|
+  Merchant.find_or_create_by!(name: "Merchant #{n}")
+end
