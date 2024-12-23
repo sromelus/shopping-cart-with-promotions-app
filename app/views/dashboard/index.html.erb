@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+  <div class="cart-widget">
+    <div class="cart-summary">
+      <i class="fas fa-shopping-cart"></i>
+      <%= link_to "View Cart", user_cart_items_path, class: "btn btn-sm btn-outline-primary" %>
+      <span class="cart-count"><%= current_user_cart.cart_items.count %></span>
+    </div>
+  </div>
+
+  <section class="user-info">
+    <h1>Welcome, <%= current_user.name %></h1>
+  </section>
+
+  <section class="items-list">
+    <h2>Browse items for Sale</h2>
+
+    <div class="items-grid" style="border: 1px solid red;">
+      <% @items.each do |item| %>
+        <div class="item-card" style="border: 1px solid blue; width: 500px;">
+          <div class="item-details" style="display: flex; align-items: center; justify-content: space-between;">
+            <h3><%= item.name %></h3>
+            <h4 class="price">Sold By: <%= item.sold_by %></h4>
+            <h4 class="price">Price: $<%= number_with_precision(item.price, precision: 2) %></h4>
+          </div>
+          <div class="item-detail" style="">
+            <h4>Brand: <%= item.brand&.name %></h4>
+            <h4>Category: <%= item.category&.name %></h4>
+          </div>
+          <div class="item-actions">
+            <%= form_with url: user_cart_items_path(current_user_cart), method: :post, class: "d-inline" do %>
+              <%= hidden_field_tag :item_id, item.id %>
+              <%= submit_tag "Add to Cart", class: "btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
