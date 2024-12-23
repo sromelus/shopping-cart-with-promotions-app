@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_23_094559) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_23_103643) do
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -53,9 +53,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_094559) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "promotion_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
+    t.index ["promotion_id"], name: "index_items_on_promotion_id"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -74,11 +76,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_094559) do
     t.integer "get_quantity"
     t.integer "percent_off"
     t.integer "category_id"
-    t.integer "item_id"
+    t.text "description"
     t.integer "merchant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_promotions_on_item_id"
     t.index ["merchant_id"], name: "index_promotions_on_merchant_id"
   end
 
@@ -94,6 +95,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_094559) do
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "merchants"
-  add_foreign_key "promotions", "items"
+  add_foreign_key "items", "promotions"
   add_foreign_key "promotions", "merchants"
 end

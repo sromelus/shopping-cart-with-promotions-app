@@ -9,7 +9,7 @@ class CreatePromotions < ActiveRecord::Migration[7.2]
       t.integer :get_quantity
       t.integer :percent_off
       t.integer :category_id
-      t.references :item, foreign_key: true
+      t.text :description
       t.references :merchant, null: false, foreign_key: true
 
       t.timestamps
