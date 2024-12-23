@@ -5,7 +5,7 @@
   <div class="cart-summary">
     <i class="fas fa-shopping-cart"></i>
     <h4>Total Price:
-      <span>$<%= current_user_cart.items.reduce(0) {|sum, n| sum + n.price} %></span>
+      <span>$<%= current_user_cart.cart_items.sum { |item| item.promotional_total || item.total } %></span>
     </h4>
   </div>
 </div>
@@ -15,9 +15,21 @@
         <div class="item-card" style="border: 1px solid blue; width: 500px;">
           <div class="item-details" style="display: flex; align-items: center; justify-content: space-between;">
             <h3><%= cart_item.item.name %></h3>
-            <h4 class="price">Price: $<%= number_with_precision(cart_item.total, precision: 2) %></h4>
+            <h4 class="price">Unit Price: $<%= number_with_precision(cart_item.item.price, precision: 2) %></h4>
+            <div class="price-container">
+              <% if cart_item.promotional_total %>
+                <h4 class="price" style='color: green;'>Price: $<%= number_with_precision(cart_item.promotional_total, precision: 2) %></h4>
+                <h3 class="price" style='text-decoration: line-through;'>Price: $<%= number_with_precision(cart_item.total, precision: 2) %></h3>
+              <% else %>
+                <h4 class="price">Price: $<%= number_with_precision(cart_item.total, precision: 2) %></h4>
+              <% end %>
+
+              <% if cart_item.item.promotion %>
+                <p class="price">Promotion: $<%= number_with_precision(cart_item.item.promotion&.percent_off, precision: 2) %> <%= number_with_precision(cart_item.item.promotion&.discount_type_text.humanize) %></p>
+              <% end %>
+            </div>
           </div>
-          <div class="item-detail" style="">
+          <div class="item-detail">
             <h4>Sold By: <%= cart_item.item.sold_by %></h4>
             <h4>Quantity:
               <%= form_with url: user_cart_item_path(cart_item), method: :patch, class: "d-inline" do %>

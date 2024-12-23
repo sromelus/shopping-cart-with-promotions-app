@@ -20,7 +20,13 @@
           <div class="item-details" style="display: flex; align-items: center; justify-content: space-between;">
             <h3><%= item.name %></h3>
             <h4 class="price">Sold By: <%= item.sold_by %></h4>
-            <h4 class="price">Price: $<%= number_with_precision(item.price, precision: 2) %></h4>
+            <div class="price-container">
+              <h4 class="price">Price: $<%= number_with_precision(item.price, precision: 2) %></h4>
+              <% if item.promotion %>
+                <p class="price">Promotion: <%= item.promotion&.discount_type %></p>
+                <p class="price">Promotion: $<%= number_with_precision(item.promotion&.percent_off, precision: 2) %> <%= number_with_precision(item.promotion&.discount_type_text.humanize) %></p>
+              <% end %>
+            </div>
           </div>
           <div class="item-detail" style="">
             <h4>Brand: <%= item.brand&.name %></h4>
