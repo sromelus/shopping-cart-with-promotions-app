@@ -3,7 +3,8 @@ class CreateItems < ActiveRecord::Migration[7.2]
     create_table :items do |t|
       t.string :name, null: false
       t.integer :sold_by
-      t.integer :unit_weight
+      t.decimal :unit_weight
+      t.integer :unit_weight_label
       t.decimal :price, null: false
       t.references :merchant, foreign_key: true
       t.references :brand, foreign_key: true

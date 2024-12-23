@@ -15,7 +15,9 @@
         <div class="item-card" style="border: 1px solid blue; width: 500px;">
           <div class="item-details" style="display: flex; align-items: center; justify-content: space-between;">
             <h3><%= cart_item.item.name %></h3>
-            <h4 class="price">Unit Price: $<%= number_with_precision(cart_item.item.price, precision: 2) %></h4>
+            <% if cart_item.promotional_total %>
+              <h4 class="price">Unit Price: $<%= number_with_precision(cart_item.item.price, precision: 2) %></h4>
+            <% end %>
             <div class="price-container">
               <% if cart_item.promotional_total %>
                 <h4 class="price" style='color: green;'>Price: $<%= number_with_precision(cart_item.promotional_total, precision: 2) %></h4>
@@ -31,10 +33,16 @@
           </div>
           <div class="item-detail">
             <h4>Sold By: <%= cart_item.item.sold_by %></h4>
-            <h4>Quantity:
+            <h4 class="price">Unit: <%= cart_item.item.unit_weight %> <%= cart_item.item.unit_weight_label&.humanize %></h4>
+
+            <h4><%= cart_item.item.quantity? ? "Quantity" : "Weight" %>:
               <%= form_with url: user_cart_item_path(cart_item), method: :patch, class: "d-inline" do %>
                 <%= hidden_field_tag :item_id, cart_item.id %>
-                <%= number_field_tag :quantity, cart_item.quantity, min: 1, max:20, class: "form-control" %>
+                  <% if cart_item.item.quantity? %>
+                    <%= number_field_tag :quantity, cart_item.quantity, min: 1, max:20, class: "form-control" %>
+                  <% else %>
+                    <%= number_field_tag :quantity, cart_item.quantity, min: 0, class: "form-control" %>
+                  <% end %>
                 <%= submit_tag "Update", class: "btn btn-success" %>
               <% end %>
             </h4>

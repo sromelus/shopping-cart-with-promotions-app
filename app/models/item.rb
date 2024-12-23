@@ -12,6 +12,6 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than: 0 }
 
   enum sold_by: { quantity: 0, weight: 1 }
-  enum unit_weight: { pounds: 0, kilograms: 1 }
+  enum unit_weight_label: { pounds: 0, kilograms: 1 }
 end
 

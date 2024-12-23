@@ -8,6 +8,12 @@ class CartItem < ApplicationRecord
   before_save :set_total_cost
 
   def set_total_cost
-    self.total = quantity * item.price
+    price_per_unit = quantity * item.price
+
+    if item.weight?
+      price_per_unit = quantity / item.unit_weight
+    end
+
+    self.total = price_per_unit
   end
 end

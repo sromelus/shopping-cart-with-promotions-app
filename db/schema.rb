@@ -46,7 +46,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_103643) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "sold_by"
-    t.integer "unit_weight"
+    t.decimal "unit_weight"
+    t.integer "unit_weight_label"
     t.decimal "price", null: false
     t.integer "merchant_id"
     t.integer "brand_id"

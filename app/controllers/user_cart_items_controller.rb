@@ -31,7 +31,7 @@ class UserCartItemsController < ApplicationController
       @cart_item = current_user_cart.cart_items.build(item_id: params[:item_id])
     end
 
-    @cart_item.quantity = @cart_item.quantity + 1
+    @cart_item.quantity = @cart_item.item.weight? ?  @cart_item.item.unit_weight : @cart_item.quantity + 1
 
     if @cart_item.save
       apply_best_flat_fee_discount
@@ -50,6 +50,7 @@ class UserCartItemsController < ApplicationController
 
   def apply_best_flat_fee_discount
     cart_items = current_user_cart.cart_items.joins(:item, item: :promotion).where(promotions: { discount_type: :flat_fee_discount })
+    return if cart_items.empty?
 
     discount_cart_item = nil
     min_diff = Float::INFINITY
