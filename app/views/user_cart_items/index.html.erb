@@ -1,0 +1,33 @@
+<h1><%= current_user.name %>'s cart <%= current_user_cart.cart_items.count %> items</h1>
+<p><%= link_to "Back To Browse items", root_path %> </p>
+
+<div class="cart-widget">
+  <div class="cart-summary">
+    <i class="fas fa-shopping-cart"></i>
+    <h4>Total Price:
+      <span>$<%= current_user_cart.items.reduce(0) {|sum, n| sum + n.price} %></span>
+    </h4>
+  </div>
+</div>
+
+<div class="items-grid" style="border: 1px solid red; display: flex; align-items: center; flex-direction: column;">
+      <% @cart_items.each do |cart_item| %>
+        <div class="item-card" style="border: 1px solid blue; width: 500px;">
+          <div class="item-details" style="display: flex; align-items: center; justify-content: space-between;">
+            <h3><%= cart_item.item.name %></h3>
+            <h4 class="price">Sold By: <%= cart_item.item.sold_by %></h4>
+            <h4 class="price">Price: $<%= number_with_precision(cart_item.item.price, precision: 2) %></h4>
+          </div>
+          <div class="item-detail" style="">
+            <h4>Brand: <%= cart_item.item.brand&.name %></h4>
+            <h4>Category: <%= cart_item.item.category&.name %></h4>
+          </div>
+          <div class="item-actions">
+            <%= form_with url: user_cart_item_path(current_user_cart), method: :delete, class: "d-inline" do %>
+              <%= hidden_field_tag :item_id, cart_item.item.id %>
+              <%= submit_tag "remove", class: "btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
