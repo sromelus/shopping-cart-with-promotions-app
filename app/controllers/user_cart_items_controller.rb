@@ -16,7 +16,13 @@ class UserCartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = current_user_cart.cart_items.build(item_id: params[:item_id])
+    @cart_item = current_user_cart.cart_items.find_by(item_id: params[:item_id])
+
+    unless @cart_item
+      @cart_item = current_user_cart.cart_items.build(item_id: params[:item_id])
+    end
+
+    @cart_item.quantity = @cart_item.quantity + 1
 
     if @cart_item.save
       redirect_back(fallback_location: root_path, notice: 'Item added to cart')
@@ -26,7 +32,7 @@ class UserCartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = current_user_cart.cart_items.find_by(item_id: params[:item_id])
+    @cart_item = current_user_cart.cart_items.find_by(id: params[:id])
     @cart_item.destroy
     redirect_back(fallback_location: root_path, notice: 'Item removed from cart')
   end

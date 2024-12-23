@@ -2,10 +2,12 @@ class CartItem < ApplicationRecord
   belongs_to :cart
   belongs_to :item
 
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
-  validates :total, presence: true, numericality: { greater_than: 0 }
+  validates :quantity, presence: true
+  validates :total, presence: true
 
-  # def total_cost
-  #   item.quantity * item.price
-  # end
+  before_save :set_total_cost
+
+  def set_total_cost
+    self.total = quantity * item.price
+  end
 end

@@ -5,5 +5,6 @@ class Cart < ApplicationRecord
   has_many :items, through: :cart_items
 
   validates :total, numericality: { greater_than_or_equal_to: 0.0 }
+  validates :user_id, uniqueness: true
 end
 
