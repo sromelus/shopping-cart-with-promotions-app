@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Promotion, type: :model do
   describe 'validation' do
-    it { should validate_presence_of(:type) }
+    it { should validate_presence_of(:discount_type) }
     it { should validate_presence_of(:status) }
     it { should validate_presence_of(:start_date) }
     it { should validate_presence_of(:merchant_id) }
@@ -21,12 +21,12 @@ RSpec.describe Promotion, type: :model do
 
 describe 'flat fee discount' do
   it 'should be valid' do
-    promotion = create(:promotion, type: 'flat_fee_discount', start_date: Date.today, merchant: create(:merchant), quantity: 10)
+    promotion = create(:promotion, discount_type: 'flat_fee_discount', start_date: Date.today, merchant: create(:merchant), quantity: 10)
     expect(promotion).to be_valid
   end
 
   it 'should not be valid without a merchant' do
-    promotion = build(:promotion, type: 'flat_fee_discount', start_date: Date.today)
+    promotion = build(:promotion, discount_type: 'flat_fee_discount', start_date: Date.today)
     expect(promotion).not_to be_valid
   end
 end

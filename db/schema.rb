@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_103643) do
 
   create_table "promotions", force: :cascade do |t|
     t.integer "status", default: 0, null: false
-    t.integer "type", null: false
+    t.integer "discount_type", null: false
     t.date "start_date", null: false
     t.date "end_date"
     t.integer "quantity"
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_103643) do
     t.integer "percent_off"
     t.integer "category_id"
     t.text "description"
+    t.integer "discount_type_text"
     t.integer "merchant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

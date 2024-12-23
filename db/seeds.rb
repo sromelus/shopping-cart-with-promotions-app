@@ -16,6 +16,7 @@ Brand.destroy_all
 Category.destroy_all
 Merchant.destroy_all
 User.destroy_all
+Promotion.destroy_all
 
 
 User.create!(name: "Joel")
@@ -32,12 +33,16 @@ end
   Category.find_or_create_by!(name: Faker::Commerce.department)
 end
 
-5.times do |n|
-  Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: rand(0..1), unit_weight: rand(0..1), price: Faker::Commerce.price)
+# 5.times do |n|
+#   Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: rand(0..1), unit_weight: rand(0..1), price: Faker::Commerce.price)
+# end
+
+1.times do |n|
+  Promotion.find_or_create_by!(discount_type: "flat_fee_discount", start_date: Date.today, merchant_id: Merchant.all.sample.id, quantity: rand(1..10), get_quantity: rand(1..10), percent_off: rand(1..10), category_id: Category.all.sample.id, discount_type_text: 1)
 end
 
 10.times do |n|
-  Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: rand(0..1), unit_weight: rand(0..1), price: Faker::Commerce.price, merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id)
+  Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: rand(0..1), unit_weight: rand(0..1), price: Faker::Commerce.price, merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: rand(0..1) == 0 ? Promotion.all.sample.id : nil)
 end
 
 

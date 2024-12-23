@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :promotion do
     status { 1 }
-    type { "" }
+    discount_type { "flat_fee_discount" }
     start_date { "2024-12-23" }
     end_date { "2024-12-23" }
     quantity { 1 }
