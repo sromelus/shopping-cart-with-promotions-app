@@ -20,12 +20,10 @@
           <div class="item-detail" style="">
             <h4>Sold By: <%= cart_item.item.sold_by %></h4>
             <h4>Quantity:
-            <% if false %>
-              <%= form_with url: user_cart_item_path(current_user_cart), method: :patch, class: "d-inline" do %>
+              <%= form_with url: user_cart_item_path(cart_item), method: :patch, class: "d-inline" do %>
                 <%= hidden_field_tag :item_id, cart_item.id %>
-                <%= number_field_tag :quantity, cart_item.quantity, min: 1, class: "form-control" %>
+                <%= number_field_tag :quantity, cart_item.quantity, min: 1, max:20, class: "form-control" %>
                 <%= submit_tag "Update", class: "btn btn-success" %>
-              <% end %>
               <% end %>
             </h4>
             <h4>Brand: <%= cart_item.item.brand&.name %></h4>

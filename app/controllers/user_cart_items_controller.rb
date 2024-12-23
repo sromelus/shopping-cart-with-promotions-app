@@ -7,6 +7,14 @@ class UserCartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = current_user_cart.cart_items.find(params[:id])
+    @cart_item.quantity = params[:quantity]
+
+    if @cart_item.save
+      redirect_back(fallback_location: root_path, notice: 'Item added to cart')
+    else
+      redirect_back(fallback_location: root_path, alert: 'Unable to add item to cart')
+    end
   end
 
   def empty
