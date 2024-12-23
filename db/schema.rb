@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_103643) do
 
   create_table "promotions", force: :cascade do |t|
     t.integer "status", default: 0, null: false
-    t.string "type", null: false
+    t.integer "type", null: false
     t.date "start_date", null: false
     t.date "end_date"
     t.integer "quantity"

@@ -24,4 +24,21 @@ RSpec.describe CartItem, type: :model do
       end
     end
   end
+
+  describe 'cart_item total calculation with promotion' do
+    let(:user) { create(:user) }
+    let(:item) { create(:item) }
+
+    xit 'when promotion is active' do
+      promotion = create(:promotion, item: item, type: 'flat_fee_discount', quantity: 5, start_date: Date.today, status: 'active')
+      cart_item = create(:cart_item, cart: user.cart, item: item, quantity: 5)
+      expect(cart_item.total).to eq(cart_item.quantity * item.price)
+    end
+
+    xit 'when promotion is not active' do
+      promotion = create(:promotion, item: item, type: 'percentage', discount_percentage: 10)
+      cart_item = create(:cart_item, cart: user.cart, item: item, quantity: 5)
+      expect(cart_item.total).to eq(cart_item.quantity * item.price)
+    end
+  end
 end
