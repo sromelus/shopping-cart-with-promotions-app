@@ -14,4 +14,3 @@ class Item < ApplicationRecord
   enum sold_by: { quantity: 0, weight: 1 }
   enum unit_weight_label: { pounds: 0, kilograms: 1 }
 end
-

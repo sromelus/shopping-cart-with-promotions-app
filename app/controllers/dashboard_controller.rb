@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     # @sold_by = @items.sold_by
     # @brand = @items.brand
     # @category = @items.category
-   
+
 
     # @cart.total = @cart.items.sum(:price)
     # @cart_items = current_user.cart_items

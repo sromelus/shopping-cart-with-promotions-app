@@ -32,62 +32,62 @@ describe 'flat fee discount' do
 end
 
 
-# Percentage discount
-#   
-# + type: “percentage_discount”
-# + start_date: “2024-12-24”
-# + end_date: nil
-# + quantity: 15
-# + get_quantity: nil
+  # Percentage discount
+  #   
+  # + type: “percentage_discount”
+  # + start_date: “2024-12-24”
+  # + end_date: nil
+  # + quantity: 15
+  # + get_quantity: nil
 
-# means 15% off
-
-
-# Buy X Get Y discount
-#   
-# + type: “buy_x_get_y_discount”
-# + start_date: “2024-12-24”
-# + end_date: nil
-# + quantity: 1
-# + get_quantity: 1
-# + percent_off: 100
-
-# means buy 1 get 1 100% off
+  # means 15% off
 
 
-# Buy X Get Y discount
-#   
-# + type: “buy_x_get_y_discount”
-# + start_date: “2024-12-24”
-# + end_date: nil
-# + quantity: 3
-# + get_quantity: 1
-# + percent_off: 50
+  # Buy X Get Y discount
+  #   
+  # + type: “buy_x_get_y_discount”
+  # + start_date: “2024-12-24”
+  # + end_date: nil
+  # + quantity: 1
+  # + get_quantity: 1
+  # + percent_off: 100
 
-# means buy 3 get 1 50% off
-
-
-# Weight threshold discounts
-#   
-# + type: “weight_threshold_discount”
-# + start_date: “2024-12-24”
-# + end_date: nil
-# + quantity: 100
-# + get_quantity: nill
-# + percent_off: 50
-
-# means buy >= 100 weight unit get 50% off
+  # means buy 1 get 1 100% off
 
 
-# Category discount
-#   
-# + type: “category_discount”
-# + start_date: “2024-12-24”
-# + end_date: nil
-# + quantity: nil
-# + get_quantity: nil
-# + percent_off: 50
-# + category_id: 2
+  # Buy X Get Y discount
+  #   
+  # + type: “buy_x_get_y_discount”
+  # + start_date: “2024-12-24”
+  # + end_date: nil
+  # + quantity: 3
+  # + get_quantity: 1
+  # + percent_off: 50
 
-# means 50% off all items in category 2
+  # means buy 3 get 1 50% off
+
+
+  # Weight threshold discounts
+  #   
+  # + type: “weight_threshold_discount”
+  # + start_date: “2024-12-24”
+  # + end_date: nil
+  # + quantity: 100
+  # + get_quantity: nill
+  # + percent_off: 50
+
+  # means buy >= 100 weight unit get 50% off
+
+
+  # Category discount
+  #   
+  # + type: “category_discount”
+  # + start_date: “2024-12-24”
+  # + end_date: nil
+  # + quantity: nil
+  # + get_quantity: nil
+  # + percent_off: 50
+  # + category_id: 2
+
+  # means 50% off all items in category 2
 end

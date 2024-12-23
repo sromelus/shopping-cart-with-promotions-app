@@ -11,15 +11,15 @@ class Promotion < ApplicationRecord
     validate :flat_fee_discount_validation
 
     def flat_fee_discount_validation
-        if discount_type == 'flat_fee_discount'
+        if discount_type == "flat_fee_discount"
             if start_date.nil?
-                errors.add(:start_date, 'must be present')
+                errors.add(:start_date, "must be present")
             end
             if merchant_id.nil?
-                errors.add(:merchant_id, 'must be present')
+                errors.add(:merchant_id, "must be present")
             end
             if quantity.nil?
-                errors.add(:quantity, 'must be present')
+                errors.add(:quantity, "must be present")
             end
         end
     end

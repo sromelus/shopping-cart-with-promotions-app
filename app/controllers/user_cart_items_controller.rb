@@ -1,6 +1,6 @@
 class UserCartItemsController < ApplicationController
   def index
-    @cart_items = current_user_cart.cart_items.includes(:item, item: [:brand, :category])
+    @cart_items = current_user_cart.cart_items.includes(:item, item: [ :brand, :category ])
   end
 
   def show
@@ -12,9 +12,9 @@ class UserCartItemsController < ApplicationController
 
     if @cart_item.save
       apply_best_flat_fee_discount
-      redirect_back(fallback_location: root_path, notice: 'Item added to cart')
+      redirect_back(fallback_location: root_path, notice: "Item added to cart")
     else
-      redirect_back(fallback_location: root_path, alert: 'Unable to add item to cart')
+      redirect_back(fallback_location: root_path, alert: "Unable to add item to cart")
     end
   end
 
@@ -35,16 +35,16 @@ class UserCartItemsController < ApplicationController
 
     if @cart_item.save
       apply_best_flat_fee_discount
-      redirect_back(fallback_location: root_path, notice: 'Item added to cart')
+      redirect_back(fallback_location: root_path, notice: "Item added to cart")
     else
-      redirect_back(fallback_location: root_path, alert: 'Unable to add item to cart')
+      redirect_back(fallback_location: root_path, alert: "Unable to add item to cart")
     end
   end
 
   def destroy
     @cart_item = current_user_cart.cart_items.find_by(id: params[:id])
     @cart_item.destroy
-    redirect_back(fallback_location: root_path, notice: 'Item removed from cart')
+    redirect_back(fallback_location: root_path, notice: "Item removed from cart")
   end
 
 

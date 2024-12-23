@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-#delete all data in the database
+# delete all data in the database
 Cart.destroy_all
 CartItem.destroy_all
 Item.destroy_all
@@ -49,4 +49,3 @@ end
 3.times do |n|
   Item.find_or_create_by!(name: Faker::Food.vegetables, sold_by: 1, unit_weight: 0.35, unit_weight_label: 0, price: Faker::Commerce.price, merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: Promotion.find_by(discount_type: 1).id)
 end
-

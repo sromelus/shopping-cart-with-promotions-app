@@ -20,7 +20,6 @@ RSpec.describe "promotions/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", promotion_path(promotion), "post" do
-
       assert_select "input[name=?]", "promotion[status]"
 
       assert_select "input[name=?]", "promotion[type]"
