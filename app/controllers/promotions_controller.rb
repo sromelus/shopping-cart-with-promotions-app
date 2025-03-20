@@ -30,6 +30,7 @@ class PromotionsController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @promotion.errors, status: :unprocessable_entity }
+        # render json: @users, status: 400ß
       end
     end
   end
@@ -46,6 +47,8 @@ class PromotionsController < ApplicationController
       end
     end
   end
+
+
 
   # DELETE /promotions/1 or /promotions/1.json
   def destroy
