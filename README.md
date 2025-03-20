@@ -11,10 +11,10 @@ Designed Data Model -> https://excalidraw.com/#json=djRTqSw3ZwsjNnzEqK3MX,sOlzgM
 - Support for both quantity-based and weight-based items - completed
 - Promotional discount system
   - Flat fee discounts - completed
-  x Percentage discounts - planned the work
-  x Buy X Get Y discounts - planned the work
-  x Weight threshold discounts - planned the work
-  x Category-based discounts - planned the work
+  x Percentage discounts - planned the work - todo
+  x Buy X Get Y discounts - planned the work - todo
+  x Weight threshold discounts - planned the work - todo
+  x Category-based discounts - planned the work - todo
 
 ## Setup
 
