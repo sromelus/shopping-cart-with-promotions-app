@@ -1,25 +1,20 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[ show edit update destroy ]
 
-  # GET /brands or /brands.json
   def index
     @brands = Brand.all
   end
 
-  # GET /brands/1 or /brands/1.json
   def show
   end
 
-  # GET /brands/new
   def new
     @brand = Brand.new
   end
 
-  # GET /brands/1/edit
   def edit
   end
 
-  # POST /brands or /brands.json
   def create
     @brand = Brand.new(brand_params)
 
@@ -34,7 +29,6 @@ class BrandsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /brands/1 or /brands/1.json
   def update
     respond_to do |format|
       if @brand.update(brand_params)
@@ -47,7 +41,6 @@ class BrandsController < ApplicationController
     end
   end
 
-  # DELETE /brands/1 or /brands/1.json
   def destroy
     @brand.destroy!
 
@@ -58,12 +51,11 @@ class BrandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_brand
       @brand = Brand.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def brand_params
       params.require(:brand).permit(:name)
     end

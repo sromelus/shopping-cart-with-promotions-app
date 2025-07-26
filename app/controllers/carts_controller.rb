@@ -1,25 +1,20 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
 
-  # GET /carts or /carts.json
   def index
     @carts = Cart.all
   end
 
-  # GET /carts/1 or /carts/1.json
   def show
   end
 
-  # GET /carts/new
   def new
     @cart = Cart.new
   end
 
-  # GET /carts/1/edit
   def edit
   end
 
-  # POST /carts or /carts.json
   def create
     @cart = Cart.new(cart_params)
 
@@ -34,7 +29,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /carts/1 or /carts/1.json
   def update
     respond_to do |format|
       if @cart.update(cart_params)
