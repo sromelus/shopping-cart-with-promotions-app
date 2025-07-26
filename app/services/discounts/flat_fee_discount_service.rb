@@ -27,7 +27,7 @@ module Discounts
       max_savings = 0
 
       cart_items.each do |cart_item|
-        potential_savings = [cart_item.item.promotion.quantity, cart_item.total].min
+        potential_savings = [ cart_item.item.promotion.quantity, cart_item.total ].min
 
         if potential_savings > max_savings
           max_savings = potential_savings

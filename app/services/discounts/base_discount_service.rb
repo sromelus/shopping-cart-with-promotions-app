@@ -13,8 +13,7 @@ module Discounts
       attr_reader :cart
 
       def discount_services
-        [Discounts::FlatFeeDiscountService.new(cart)]
+        [ Discounts::FlatFeeDiscountService.new(cart) ]
       end
     end
-  end
-  
+end

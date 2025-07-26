@@ -19,9 +19,9 @@ class Item < ApplicationRecord
 
     discounted_price = if promotion.discount_type == "flat_fee_discount"
                         price - promotion.quantity.to_f
-                      else
+    else
                         price * (1 - promotion.percent_off.to_f / 100)
-                      end
+    end
 
     "$#{discounted_price.round(2)}"
   end
