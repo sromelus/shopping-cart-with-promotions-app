@@ -34,18 +34,18 @@ end
 end
 
 
-1.times do |n|
-  Promotion.find_or_create_by!(discount_type: 0, start_date: Date.today, merchant_id: Merchant.all.sample.id, quantity: rand(1..10), get_quantity: rand(1..10), percent_off: rand(1..10), category_id: Category.all.sample.id, discount_type_text: 1)
-end
-
-1.times do |n|
-  Promotion.find_or_create_by!(discount_type: 1, start_date: Date.today, merchant_id: Merchant.all.sample.id, quantity: rand(1..10), get_quantity: rand(1..10), percent_off: rand(1..10), category_id: Category.all.sample.id, discount_type_text: 0)
+3.times do |n|
+  Promotion.find_or_create_by!(discount_type: 0, start_date: Date.today, merchant_id: Merchant.all.sample.id, quantity: 5.step(80, 5).to_a.sample, category_id: Category.all.sample.id, discount_type_text: 1)
 end
 
 3.times do |n|
-  Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: 0, price: Faker::Commerce.price, merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: Promotion.find_by(discount_type: 0).id)
+  Promotion.find_or_create_by!(discount_type: 1, start_date: Date.today, merchant_id: Merchant.all.sample.id, percent_off: 5.step(80, 5).to_a.sample, category_id: Category.all.sample.id, discount_type_text: 0)
 end
 
 3.times do |n|
-  Item.find_or_create_by!(name: Faker::Food.vegetables, sold_by: 1, unit_weight: 0.35, unit_weight_label: 0, price: Faker::Commerce.price, merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: Promotion.find_by(discount_type: 1).id)
+  Item.find_or_create_by!(name: Faker::Commerce.product_name, sold_by: 0, price: rand(90..200).round(2), merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: Promotion.ids.sample)
+end
+
+3.times do |n|
+  Item.find_or_create_by!(name: Faker::Food.vegetables, sold_by: 1, unit_weight: 0.5, unit_weight_label: 0, price: rand(90..200).round(2), merchant_id: Merchant.all.sample.id, brand_id: Brand.all.sample.id, category_id: Category.all.sample.id, promotion_id: Promotion.ids.sample)
 end
